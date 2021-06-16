@@ -29,25 +29,19 @@ class Algo():
         pass
 
     def run_calc(self):
-        self.cc_number_doubled = [] # list of the doubles
+        self.cc_number_doubled = []
 
-        # print(f'original cc_number {type(card_num.cc_number)} {card_num.cc_number}')
         self.cc_number_map = map(int, card_num.cc_number)
         self.cc_number_list_int = list(self.cc_number_map)
 
-        # print(f'original cc_number {type(self.cc_number_list_int)} {self.cc_number_list_int}')
         self.last_digit = self.cc_number_list_int.pop(-1)
-        # print(f'cc_number without last_digit ({self.last_digit}) {type(self.cc_number_list_int)} {self.cc_number_list_int}')
         self.cc_number_list_int_fixed = []
         for x in self.cc_number_list_int:
             self.cc_number_list_int_fixed.append(x)
-        # print(f'self.cc_number_list_int_fixed {self.cc_number_list_int_fixed}')
 
         for x in self.cc_number_list_int[0:15:2]: # STARTING WITH first digit, multiply every second digit by 2
             self.cc_number_doubled.append(x*2)
         del self.cc_number_list_int[0:15:2]
-        # print(f'cc_number_doubled[0:15:2] {self.cc_number_doubled}')
-        # print(f'del cc_number_list_int[0:15:2] resulting in {self.cc_number_list_int}')
 
         self.cc_number_doubled_fixed = []
         for i in self.cc_number_doubled:
@@ -61,16 +55,10 @@ class Algo():
         for y in self.cc_number_doubled:
             if y > 9:
                 self.temp_hold.append(y)
-        # print(f'temp_hold {self.temp_hold}')
         self.cc_number_doubled = self.temp_hold
-        # print(f'cc_number_doubled {self.cc_number_doubled}')
-
-        # print(f'del cc_number_list_int (single digits appended from cc_number_doubled) {self.cc_number_list_int}')
-        # print(f'cc_number_doubled (single digits deleted) {self.cc_number_doubled}')
 
         self.cc_number_doubled_map = map(str, self.cc_number_doubled)
         self.cc_number_doubled_str = list(self.cc_number_doubled_map)
-        # print(f'cc_number_doubled (list of strings {type(self.cc_number_doubled_str)} {self.cc_number_doubled_str}')
 
         self.cc_number_sum_double = []
 
@@ -82,13 +70,9 @@ class Algo():
             self.cc_number_sum_double.append(self.sum_of_digits)
             self.sum_of_digits = 0
             self.n += 1
-        # print(self.cc_number_sum_double)
-        # print(self.cc_number_list_int)
 
         self.total = sum(self.cc_number_list_int+self.cc_number_sum_double)
         self.final_number = self.total + self.last_digit
-        # print(f'These ({self.cc_number_list_int}) + these ({self.cc_number_sum_double}) = {self.total}')
-        # print(f'Total ({self.total}) + last digit ({self.last_digit}) = {self.final_number}')
 
         check_now.check()
 
@@ -102,11 +86,9 @@ class CheckSum():
     def check(self):
         if (calc_process.total + calc_process.last_digit) % 10 == 0:
             print('\n\tVALID card number!!')
-            # print(f'{calc_process.final_number} IS a multiple of 10')
             workings.show_results()
         else:
             print('\n\tINVALID card number, please check and try again')
-            # print(f'{calc_process.final_number} IS NOT a multiple of 10')
             workings.show_results()
 
     def __str__(self):
