@@ -1,5 +1,6 @@
-# credit_card
-credit card validator app using the Luhn algorithm.
+# Credit Card
+
+Credit card validator app using the Luhn algorithm.
 python libraries used: tkinter, random
 
 On a credit card, a checksum is a single digit in the account number that allows a computer, or anyone familiar with the formula involved, to determine whether the number is valid. The checksum can help identify credit card numbers that have been entered incorrectly -- or phony credit card numbers created by counterfeiters.
